@@ -1,11 +1,7 @@
 package main;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.Image;
-import java.io.IOException;
+
 
 class PanelPrincipal extends JPanel {//se ve en el centro de la ventana
 	//private PanelComprador com;
@@ -14,6 +10,7 @@ class PanelPrincipal extends JPanel {//se ve en el centro de la ventana
     public PanelPrincipal (Expendedor x) {
         //com=new PanelComprador();
 		exp = new PanelExpendedor(x.cantidadproduct());
+		setLayout(null);
 		this.add(exp);
 		this.setBackground(Color.white);
 	}
@@ -26,46 +23,16 @@ class PanelPrincipal extends JPanel {//se ve en el centro de la ventana
 }	
 	
 	class PanelExpendedor extends JPanel{
-		private int cantidad,z=700;
-		private Image coquita,sprite,super8,trencito;
-		private Image loadImage1(String fileName) {
-			try {
-				return ImageIO.read(new File("cocafinal.png"));
-			} catch (IOException e) {
-				e.printStackTrace();
-				return null;
-			}
-		}
-		private Image loadImage2(String fileName) {
-			try {
-				return ImageIO.read(new File("sprite.png"));
-			} catch (IOException e) {
-				e.printStackTrace();
-				return null;
-			}
-		}
-		private Image loadImage3(String fileName) {
-			try {
-				return ImageIO.read(new File("super8.png"));
-			} catch (IOException e) {
-				e.printStackTrace();
-				return null;
-			}
-		}
-		private Image loadImage4(String fileName) {
-			try {
-				return ImageIO.read(new File("trencito.png"));
-			} catch (IOException e) {
-				e.printStackTrace();
-				return null;
-			}
-		}
+		private int cantidad,z=0;
+		private ImageIcon coquita,sprite,super8,trencito;
 		public PanelExpendedor(int num){
 			cantidad=num;
-			coquita=loadImage1("cocafinal.png");
-			sprite=loadImage2("sprite.png");
-			super8=loadImage3("super8.png");
-			trencito=loadImage4("trencito.png");
+			coquita=new ImageIcon("cocafinal.png");
+			sprite=new ImageIcon("sprite.png");
+			super8=new ImageIcon("super8.png");
+			trencito=new ImageIcon("trencito.png");
+			setLayout(null);
+
 		}
 	@Override
     public void paintComponent(Graphics g) {
@@ -87,12 +54,12 @@ class PanelPrincipal extends JPanel {//se ve en el centro de la ventana
 		gd.drawLine(767,279,935,279);
 		gd.setColor(Color.BLACK);
 		gd.drawLine(767,336,935,336);
-		for(int i=0;i<cantidad;i++) {
-			gd.drawImage(coquita,z,120,null);
-			gd.drawImage(sprite,z,169,null);
-			gd.drawImage(super8,z,230,null);
-			gd.drawImage(trencito,z,285,null);
-			z=z+17;
+		for (int i = 0; i <cantidad; i++) {
+			gd.drawImage(coquita.getImage(), 600+z, 120,null);
+			gd.drawImage(sprite.getImage(), 600+z, 169,null);
+			gd.drawImage(super8.getImage(), 600+z, 230,null);
+			gd.drawImage(trencito.getImage(), 600+z, 285,null);
+			z+=17;
 		}
     }
 

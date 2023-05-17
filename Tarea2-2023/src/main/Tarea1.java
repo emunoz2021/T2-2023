@@ -34,11 +34,6 @@ public class Tarea1 {
         } catch (NoHayProductoException e) {
             System.out.println(e.getMessage() + ", se le devolvera su moneda: " + exp.getVuelto().getValor());
         }
-        JFrame frame = new JFrame("Tarea2");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 600);
-        frame.setVisible(true);  
-        PanelPrincipal panel=new PanelPrincipal(exp);
-        frame.add(panel);
+        Ventana v=new Ventana(exp);
     }
 } 
