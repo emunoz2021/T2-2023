@@ -1,4 +1,6 @@
 package main;
+import java.awt.Graphics;
+
 import java.util.Collections;
 import java.util.ArrayList;
 /**
@@ -15,13 +17,12 @@ import java.util.ArrayList;
 *@field precios Son los precios de los productos
 *@field vuelto Corresponde al vuelto
 */
-class Expendedor{
+class Expendedor {
     private Deposito<Bebida> coca;
     private Deposito<Bebida> sprite;
     private Deposito<Dulce> super8;
     private Deposito<Dulce> trencito;
     private Deposito<Moneda> monVu;
-    
     public static final int COCA=1; 
     public static final int SPRITE=2;
     public static final int SUPER8=3; 
@@ -30,18 +31,19 @@ class Expendedor{
     public static final int precioSprite=900;
     public static final int precioSuper8=300;
     public static final int precioTrencito=1200;
-    public int vuelto=0;
-    /**
-    *Metodo constructor de Expendedor, instancia los depositos  y además agrega sus productos dado un numero entragado como parametro, tambien guarda los precios
-    *@param productos Es el numero de productos que se desea
-    */
+    public int vuelto=0,cantidad;
+
+
+    public int cantidadproduct(){
+        return cantidad;
+    }
    public Expendedor(int productos) {
         coca = new Deposito<>();
         sprite = new Deposito<>();
         super8 = new Deposito<>();
         trencito = new Deposito<>();
         monVu = new Deposito<>();
-
+        cantidad=productos;
         for (int i = 0; i < productos; i++) {//si el numero de bebidas es 0, no se agregan bebidas
             coca.addDeposito(new CocaCola(100 + i));
             sprite.addDeposito(new Sprite(200 + i));
@@ -49,7 +51,7 @@ class Expendedor{
             trencito.addDeposito(new Trencito(400+i));
         }
     }
-    
+
     /**
     *Metodo que sirve para escoger un producto dado sus parametros y obtenerlo en caso de estar, ademas devolver el vuelto en monedas de 100 que son creadas en el mismo metodo
     *@param m Moneda con la cual se compra el producto
